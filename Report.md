@@ -17,6 +17,20 @@ Actions and next states are highly correlated. A set of actions may lead us to k
 Another situation might be where a particular state may not comeby very often and we are unable to train our network on these states.
 Replay Buffer addresses this problem by saving experiences and then training our network by randomly sampling from this buffer thus breaking away from the action/next-state correlation.
 
+### Epsilon Decay
+We use epsilon greedy policy to encourage exploration. At the beginning we want to explore as much as possible and reduce the exploration towards the end when we have a better sense of all the states. To do this we use epsilon decay.
+
+### Hyper parameters
+
+- Number of episodes : 2000
+- Timesteps per episode : 1000
+- Epsilon range : 1.0 - 0.01
+- Epsilon decay : 0.995
+
+**Neural Network Architecture**:
+
+Input Layer(37) -> Fully Connected Layer(64) -> ReLU -> Fully Connected Layer(64) -> ReLU -> Output Layer(4)
+
 ## Results
 
 Using the above techniques we solve the problem in around 600 episodes. We reach a score of a little over 26 after training for 2000 episodes. Here is the Scores vs Episodes graph of our training.
@@ -25,6 +39,6 @@ Using the above techniques we solve the problem in around 600 episodes. We reach
 
 ## Future Work
 
-We can further improve this by applying Experienced Replay Buffer, Double DQN, Dueling DQN or a combination of all of the above which is also referred to as Rainbow DQN.
+We can further improve this agent by applying Experienced Replay Buffer, Double DQN, Dueling DQN or a combination of all of the above which is also referred to as Rainbow DQN.
 
 As a further challenge we can use raw pixels as our input and try to solve the environment.
